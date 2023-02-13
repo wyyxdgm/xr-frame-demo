@@ -34,37 +34,37 @@ Component({
       console.log('xr-scene', xrScene);
       const xrFrameSystem = wx.getXrFrameSystem()
 
-      const sizeChange = xrScene.getElementById("size-change");
-      sizeChange.getComponent(xrFrameSystem.Particle).addSizeGradient(0,0.1,0.1);
-      sizeChange.getComponent(xrFrameSystem.Particle).addSizeGradient(0.5,0.3,0.3);
-      sizeChange.getComponent(xrFrameSystem.Particle).addSizeGradient(1,0.6,0.6);
+      // const sizeChange = xrScene.getElementById("size-change");
+      // sizeChange.getComponent(xrFrameSystem.Particle).addSizeGradient(0,0.1,0.1);
+      // sizeChange.getComponent(xrFrameSystem.Particle).addSizeGradient(0.5,0.3,0.3);
+      // sizeChange.getComponent(xrFrameSystem.Particle).addSizeGradient(1,0.6,0.6);
       
-      const particle = xrScene.getElementById("human-face");
-      // // 来自图片数据的二元数组content
-      var content = cont
-      // // 影响画作的大小与粒子疏密程度的因子
-      var step = 0.02
-      var height = Math.floor(step * content.length)
-      //设置箱型发射器的发射方向，与粒子初始位置范围
-      particle.getComponent(xrFrameSystem.Particle).createBoxEmitter(xrFrameSystem.Vector3.createFromNumber(1.0, 0.0, 0), xrFrameSystem.Vector3.createFromNumber(1.0, 0.0, 0),
-      xrFrameSystem.Vector3.createFromNumber(0, 0, 0.5), xrFrameSystem.Vector3.createFromNumber(0, height, 0.0));
-      //实现发射器的自定义粒子运作接口
-      particle.getComponent(xrFrameSystem.Particle).particleEmitter.processInstance =  (instance, deltaTime)=> {
-        var contentTemp = content
-        var cellNumY = contentTemp.length
-        var cellNumX = contentTemp[0].length
-        var width =  Math.floor(step * cellNumX)
-        if(instance.position.x - instance.particleSystem.emitterPosition.x> width){
-          instance.age = instance.lifeTime;
-              return;
-          }
-          instance.age = 0;
-          const posX = Math.floor((instance.position.x -  instance.particleSystem.emitterPosition.x)/ step);
-          const posY = Math.floor(instance.position.y/ step);
-          const speed = contentTemp[cellNumY-1-posY][posX] * 0.97;
-          instance.position.x += ( 1 - speed * 0.97 ) * 0.03 + Math.random() * 0.007;
-          instance.color.w = speed * 0.3;
-      };
+      // const particle = xrScene.getElementById("human-face");
+      // // // 来自图片数据的二元数组content
+      // var content = cont
+      // // // 影响画作的大小与粒子疏密程度的因子
+      // var step = 0.02
+      // var height = Math.floor(step * content.length)
+      // //设置箱型发射器的发射方向，与粒子初始位置范围
+      // particle.getComponent(xrFrameSystem.Particle).createBoxEmitter(xrFrameSystem.Vector3.createFromNumber(1.0, 0.0, 0), xrFrameSystem.Vector3.createFromNumber(1.0, 0.0, 0),
+      // xrFrameSystem.Vector3.createFromNumber(0, 0, 0.5), xrFrameSystem.Vector3.createFromNumber(0, height, 0.0));
+      // //实现发射器的自定义粒子运作接口
+      // particle.getComponent(xrFrameSystem.Particle).particleEmitter.processInstance =  (instance, deltaTime)=> {
+      //   var contentTemp = content
+      //   var cellNumY = contentTemp.length
+      //   var cellNumX = contentTemp[0].length
+      //   var width =  Math.floor(step * cellNumX)
+      //   if(instance.position.x - instance.particleSystem.emitterPosition.x> width){
+      //     instance.age = instance.lifeTime;
+      //         return;
+      //     }
+      //     instance.age = 0;
+      //     const posX = Math.floor((instance.position.x -  instance.particleSystem.emitterPosition.x)/ step);
+      //     const posY = Math.floor(instance.position.y/ step);
+      //     const speed = contentTemp[cellNumY-1-posY][posX] * 0.97;
+      //     instance.position.x += ( 1 - speed * 0.97 ) * 0.03 + Math.random() * 0.007;
+      //     instance.color.w = speed * 0.3;
+      // };
 
 
       //case subEmitter
